@@ -1,0 +1,1 @@
+To je Readme o mojem projekti nalogi
