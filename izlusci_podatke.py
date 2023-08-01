@@ -1,14 +1,21 @@
 import re
 
-#with open('stran68054.html', encoding='utf-8') as dat:
-#    besedilo = dat.read()
-#    tekme = []
-#    for najdba in re.finditer(
-#        '<td class="date">(?P<datum>\d*\s\w*\s\d*)</td>',
-#        besedilo,             
-#    ):
-#        tekme.append(najdba['datum'])
-#print(tekme)        
+with open('stran68054.html', encoding='utf-8') as dat:
+    besedilo = dat.read()
+    tekme = []
+    for najdba in re.finditer(
+        '<span>(?P<ime>\w*(\s\w*)+) Judoka</span>',
+        besedilo,             
+    ):
+        tekme.append(najdba['ime'])
+        
+    for najdba in re.finditer(
+        'Country: (?P<drzava>\w*)              </span>',
+        besedilo,             
+    ):
+        tekme.append(najdba['drzava'])
+
+print(tekme)        
 
 #bloki = []
 #with open('stran68054.html', encoding='utf-8') as dat:
@@ -50,7 +57,7 @@ def poisci_bloke(tekst):
     with open(tekst, encoding='utf-8') as dat:
         besedilo = dat.read()
         vzorec = re.compile(
-            '<tr class="body">' '.*?' '\s+</tr>',
+            '<td class="date">' '.*?' '\s+</tr>',
             flags=re.DOTALL,
             )
         for najdba in vzorec.finditer(besedilo):
@@ -59,6 +66,20 @@ def poisci_bloke(tekst):
         return bloki
 
 #print(poisci_bloke('stran68054.html'))
+
+def izlusci_osebo(besedilo):
+    oseba = {}
+    
+    vzorec_ime = re.compile('<span>(?P<ime>\w*(\s\w*)+) Judoka</span>')
+    najdba_ime = vzorec_ime.search(besedilo)
+    oseba['ime'] = najdba_ime['ime']
+    
+    vzorec_drzava = re.compile('Country: (?P<drzava>\w*)              </span>')
+    najdba_drzava = vzorec_drzava.search(besedilo)
+    oseba['drzava'] = najdba_drzava['drzava']
+    
+    return oseba
+     
 
 
 def izlusci_podatke(blok):
@@ -79,11 +100,18 @@ def izlusci_podatke(blok):
     najdba_dogodek = vzorec_dogodek.search(blok)
     tekmovalec['dogodek'] = najdba_dogodek['dogodek']
     
+    vzorec_kategorija = re.compile('<td class="category">(?P<kategorija>U\d+)</td>')
+    najdba_kategorija = vzorec_kategorija.search(blok)
+    tekmovalec['kategorija'] = najdba_kategorija['kategorija']
+    
     return tekmovalec
 
-besedilo = poisci_bloke('stran68054.html')
-for blok in besedilo:
-    #i = 1
-    #if i >= len(tekme):
-    #    break 
-    print(izlusci_podatke(blok))
+#besedilo = poisci_bloke('stran.html')
+#for blok in besedilo:
+#    #i = 1
+#    #if i >= len(tekme):
+#    #    break 
+#    print(izlusci_podatke(blok))
+
+besedilo = 'stran68054.html'
+#print(izlusci_osebo(besedilo))
