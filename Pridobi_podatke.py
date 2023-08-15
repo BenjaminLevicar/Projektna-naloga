@@ -1,9 +1,9 @@
 import requests
 
 stran = requests.get(
-    'https://www.judoinside.com/judoka/1/judo-career'
+    'https://judoinside.com/judoka/68054/judo-results'
 )
-with open('stran.html', 'w', encoding='utf-8') as dat:
+with open('stranOnoNova.html', 'w', encoding='utf-8') as dat:
     dat.write(stran.text)
 
 

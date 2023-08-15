@@ -17,6 +17,15 @@ with open('stran68054.html', encoding='utf-8') as dat:
 
 print(tekme)        
 
+with open('stranOnoNova.html', encoding='utf-8') as dat:
+    besedilo = dat.read()
+    tekme = []
+    for najdba in re.finditer(
+        '<td class="date">(?P<datum>\d*\s\w*\s\d*)</td>',
+        besedilo,             
+    ):
+        tekme.append(najdba['datum'])
+print(tekme)
 #bloki = []
 #with open('stran68054.html', encoding='utf-8') as dat:
 #    besedilo = dat.read()
@@ -57,15 +66,20 @@ def poisci_bloke(tekst):
     with open(tekst, encoding='utf-8') as dat:
         besedilo = dat.read()
         vzorec = re.compile(
-            '<td class="date">' '.*?' '\s+</tr>',
+            '<td class="date">' '.*?' '\s+<span></span>',
             flags=re.DOTALL,
             )
         for najdba in vzorec.finditer(besedilo):
             bloki.append(besedilo[najdba.start() : najdba.end()])
 
         return bloki
+    
 
-#print(poisci_bloke('stran68054.html'))
+
+besedilo = poisci_bloke('stranOnoNova.html')
+for el in besedilo:
+    with open('podatkiNovo.html','a', encoding='utf-8') as dat:
+        dat.write(el)
 
 def izlusci_osebo(besedilo):
     oseba = {}
