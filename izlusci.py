@@ -59,7 +59,7 @@ def poisci_bloke(tekst):
 def izlusci_podatke(blok):
     tekmovalec = {}
 
-    vzorec_datum = re.compile(r'<td class="date">(?P<datum>\d*\s\w*\s\d*)</td>')
+    vzorec_datum = re.compile(r'<td class="date">\d*\s\w*\s(?P<datum>\d*)</td>')
     najdba_datum = vzorec_datum.search(blok)
     try:
         tekmovalec['datum'] = najdba_datum['datum']
