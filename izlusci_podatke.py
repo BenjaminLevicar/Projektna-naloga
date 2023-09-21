@@ -17,15 +17,15 @@ with open('stran68054.html', encoding='utf-8') as dat:
 
 print(tekme)        
 
-with open('stranOnoNova.html', encoding='utf-8') as dat:
-    besedilo = dat.read()
-    tekme = []
-    for najdba in re.finditer(
-        '<td class="date">(?P<datum>\d*\s\w*\s\d*)</td>',
-        besedilo,             
-    ):
-        tekme.append(najdba['datum'])
-print(tekme)
+#with open('stranOnoNova.html', encoding='utf-8') as dat:
+#    besedilo = dat.read()
+#    tekme = []
+#    for najdba in re.finditer(
+#        '<td class="date">(?P<datum>\d*\s\w*\s\d*)</td>',
+#        besedilo,             
+#    ):
+#        tekme.append(najdba['datum'])
+#print(tekme)
 #bloki = []
 #with open('stran68054.html', encoding='utf-8') as dat:
 #    besedilo = dat.read()
@@ -76,23 +76,23 @@ def poisci_bloke(tekst):
     
 
 
-besedilo = poisci_bloke('stranOnoNova.html')
-for el in besedilo:
-    with open('podatkiNovo.html','a', encoding='utf-8') as dat:
-        dat.write(el)
-
-def izlusci_osebo(besedilo):
-    oseba = {}
-    
-    vzorec_ime = re.compile('<span>(?P<ime>\w*(\s\w*)+) Judoka</span>')
-    najdba_ime = vzorec_ime.search(besedilo)
-    oseba['ime'] = najdba_ime['ime']
-    
-    vzorec_drzava = re.compile('Country: (?P<drzava>\w*)              </span>')
-    najdba_drzava = vzorec_drzava.search(besedilo)
-    oseba['drzava'] = najdba_drzava['drzava']
-    
-    return oseba
+#besedilo = poisci_bloke('stranOnoNova.html')
+#for el in besedilo:
+#    with open('podatkiNovo.html','a', encoding='utf-8') as dat:
+#        dat.write(el)
+#
+#####def izlusci_osebo(besedilo):
+#####    oseba = {}
+#####    
+#####    vzorec_ime = re.compile('<span>(?P<ime>\w*(\s\w*)+) Judoka</span>')
+#####    najdba_ime = vzorec_ime.search(besedilo)
+#####    oseba['ime'] = najdba_ime['ime']
+#####    
+#####    vzorec_drzava = re.compile('Country: (?P<drzava>\w*)              </span>')
+#####    najdba_drzava = vzorec_drzava.search(besedilo)
+#####    oseba['drzava'] = najdba_drzava['drzava']
+#####    
+#####    return oseba
      
 
 
@@ -128,4 +128,5 @@ def izlusci_podatke(blok):
 #    print(izlusci_podatke(blok))
 
 besedilo = 'stran68054.html'
-#print(izlusci_osebo(besedilo))
+for blok in poisci_bloke(besedilo):
+    print(izlusci_podatke(besedilo))
