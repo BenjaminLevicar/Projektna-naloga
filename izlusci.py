@@ -90,25 +90,35 @@ def izlusci_podatke(blok):
 
     return tekmovalec
 
-for i in range(1, 11):        
-    with open(f'htmlji/stran{i}.html', encoding='utf-8') as dat:
-        with open('rezultati.html', 'a', encoding='utf-8') as dato:
-            besedilo = dat.read()
-            tekme = []
-            for najdba in re.finditer(
-                '<span>(?P<ime>\w*(\s\w*)+) Judoka</span>',
-                besedilo,             
-            ):
-                tekme.append(najdba['ime'])
-                a = najdba['ime']
-            for najdba in re.finditer(
-                'Country: (?P<drzava>\w*)              </span>',
-                besedilo,             
-            ):
-                tekme.append(najdba['drzava'])
+def najdi_ime(datoteka):
+    with open(datoteka, encoding='utf-8') as dat:
+        besedilo = dat.read()
+        for najdba in re.finditer(
+            r'<span>(?P<ime>(\w*\-?\'?\w*)(\s\w*\-?\'?\w*)+) Judoka</span>',
+            besedilo,             
+        ):
+            return najdba['ime']
+        
+#def vsi_podatki(st, izhodna_dat):
+#    for i in range(1, st + 1):        
+#        with open(f'htmlji/stran{i}.html', encoding='utf-8') as dat:
+#            with open(izhodna_dat, 'a', encoding='utf-8') as dato:
+#                for blok in poisci_bloke(f'htmlji/stran{i}.html'):
+#                    tekma = izlusci_podatke(blok)
+#                    if tekma['datum'] == '/' or tekma['rezultat'] == '/' or tekma['dogodek'] == '/' or tekma['kategorija'] == '/':
+#                        break
+#                    tekma['ime'] = najdi_ime(f'htmlji/stran{i}.html')
+#                    dato.write(str(tekma) + '\n')
+#    return dato
+
+def vsi_podatki(st):
+    tekmovalci = []
+    for i in range(1, st + 1):        
+        with open(f'htmlji/stran{i}.html', encoding='utf-8') as dat:
             for blok in poisci_bloke(f'htmlji/stran{i}.html'):
                 tekma = izlusci_podatke(blok)
                 if tekma['datum'] == '/' or tekma['rezultat'] == '/' or tekma['dogodek'] == '/' or tekma['kategorija'] == '/':
                     break
-                tekma['ime'] = a
-                dato.write(str(tekma) + '\n')
+                tekma['ime'] = najdi_ime(f'htmlji/stran{i}.html')
+                tekmovalci.append(tekma)
+    return tekmovalci
