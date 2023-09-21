@@ -81,7 +81,7 @@ def izlusci_podatke(blok):
         tekmovalec['dogodek'] = '/'
     
 
-    vzorec_kategorija = re.compile(r'<td class="category">(?P<kategorija>\w+\d+)</td>')
+    vzorec_kategorija = re.compile(r'<td class="category">(?P<kategorija>\w+\d+[+]?)</td>')
     najdba_kategorija = vzorec_kategorija.search(blok)
     try:
         tekmovalec['kategorija'] = najdba_kategorija['kategorija']
