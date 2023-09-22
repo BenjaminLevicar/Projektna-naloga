@@ -24,3 +24,20 @@ def shrani_tekmovalce(ime_dat, podatki_tekmovalcev):
                     tekmovalec['kategorija'],
                 ]
             )
+def shrani_judoista(ime_dat, podatki_judoistov):
+    with open(ime_dat, "w") as dat:
+        pisatelj = csv.writer(dat)
+        pisatelj.writerow(
+            [
+                'ime',
+                'drzava',
+            ]
+        )
+
+        for judoist in podatki_judoistov:
+            pisatelj.writerow(
+                [
+                    judoist['ime'],
+                    judoist['drzava'],
+                ]
+            )

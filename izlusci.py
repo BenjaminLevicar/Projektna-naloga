@@ -122,3 +122,23 @@ def vsi_podatki(st):
                 tekma['ime'] = najdi_ime(f'htmlji/stran{i}.html')
                 tekmovalci.append(tekma)
     return tekmovalci
+
+def osebni_podatki(st):
+    judoisti = []
+    for i in range(1, st + 1):
+        with open(f'htmlji/stran{i}.html', encoding='utf-8') as dat:
+            besedilo = dat.read()
+            judoist = {}
+            for najdba in re.finditer(
+                r'<span>(?P<ime>(\w*\-?\'?\w*)(\s\w*\-?\'?\w*)+) Judoka</span>',
+                besedilo,             
+            ):
+                judoist['ime'] = najdba['ime']
+
+            for najdba in re.finditer(
+                'Country: (?P<drzava>\w*)              </span>',
+                besedilo,             
+            ):
+                judoist['drzava'] = najdba['drzava']
+        judoisti.append(judoist)
+    return judoisti
