@@ -140,5 +140,6 @@ def osebni_podatki(st):
                 besedilo,             
             ):
                 judoist['drzava'] = najdba['drzava']
+
         judoisti.append(judoist)
     return judoisti

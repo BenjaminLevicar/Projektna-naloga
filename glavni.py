@@ -1,8 +1,10 @@
 import izlusci
 import shrani
 
-podatki = izlusci.vsi_podatki(10)
-judoisti = izlusci.osebni_podatki(10)
+st_strani = 12
 
-shrani.shrani_tekmovalce('tekmovalci.csv', podatki)
+#podatki = izlusci.vsi_podatki(st_strani)
+judoisti = izlusci.osebni_podatki(st_strani)
+
+#shrani.shrani_tekmovalce('tekmovalci.csv', podatki)
 shrani.shrani_judoista('judoisti.csv', judoisti)

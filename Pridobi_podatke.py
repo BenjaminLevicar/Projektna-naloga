@@ -8,7 +8,7 @@ import re
 #    dat.write(stran.text)
 
 
-for i in range(1, 11):
+for i in range(1, 101):
     stran = requests.get(
         f"https://www.judoinside.com/judoka/{i}/judo-career"
     )
