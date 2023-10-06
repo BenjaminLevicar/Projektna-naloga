@@ -35,9 +35,12 @@ def shrani_judoista(ime_dat, podatki_judoistov):
         )
 
         for judoist in podatki_judoistov:
-            pisatelj.writerow(
-                [
-                    judoist['ime'],
-                    judoist['drzava'],
-                ]
-            )
+            try:
+                pisatelj.writerow(
+                    [
+                        judoist['ime'],
+                        judoist['drzava'],
+                    ]
+                )
+            except KeyError:
+                continue

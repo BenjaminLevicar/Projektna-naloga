@@ -1,20 +1,21 @@
 import requests
 import re
 
-#stran = requests.get(
-#    'https://judoinside.com/judoka/1/judo-results'
-#)
-#with open('htmlji/stran2.html', 'w', encoding='utf-8') as dat:
-#    dat.write(stran.text)
-
-
-for i in range(1, 101):
+for i in range(1, 51):
     stran = requests.get(
-        f"https://www.judoinside.com/judoka/{i}/judo-career"
+        f'https://www.judoinside.com/judoka/{i}/judo-career'
     )
-
-    with open(f'htmlji/stran{i}.html', 'w', encoding='utf-8') as dat:
+    with open('htmlji/big_stran.html', 'a', encoding='utf-8') as dat:
         dat.write(stran.text)
+
+
+#for i in range(1, 101):
+#    stran = requests.get(
+#        f"https://www.judoinside.com/judoka/{i}/judo-career"
+#    )
+#
+#    with open(f'htmlji/stran{i}.html', 'w', encoding='utf-8') as dat:
+#        dat.write(stran.text)
 
 #import requests
 #
