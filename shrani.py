@@ -2,7 +2,7 @@ import csv
 
 
 def shrani_tekmovalce(ime_dat, podatki_tekmovalcev):
-    with open(ime_dat, "w") as dat:
+    with open(ime_dat, "a", encoding='utf-8') as dat:
         pisatelj = csv.writer(dat)
         pisatelj.writerow(
             [
@@ -25,7 +25,7 @@ def shrani_tekmovalce(ime_dat, podatki_tekmovalcev):
                 ]
             )
 def shrani_judoista(ime_dat, podatki_judoistov):
-    with open(ime_dat, "w") as dat:
+    with open(ime_dat, "a", encoding='utf-8') as dat:
         pisatelj = csv.writer(dat)
         pisatelj.writerow(
             [

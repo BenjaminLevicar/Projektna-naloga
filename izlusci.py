@@ -16,7 +16,6 @@ import re
 def poisci_bloke(tekst):
     bloki = []
     besedilo = tekst[2]
-    print(len(besedilo))
     vzorec = re.compile(
         '<td class="date">' '.*?' '                  </tr>',
         flags=re.DOTALL,
@@ -130,15 +129,16 @@ def najdi_ime(datoteka):
 
 def vsi_podatki(file):
     tekmovalci = []
+    i = 1
     for stran in poisci_strani(file):
-        print('i')
         for blok in poisci_bloke(stran):
-            print('e')
             tekma = izlusci_podatke(blok)
             if tekma['datum'] == '/' or tekma['rezultat'] == '/' or tekma['dogodek'] == '/' or tekma['kategorija'] == '/':
                    break
             tekma['ime'] = stran[0]
             tekmovalci.append(tekma)
+        print(i)
+        i += 1
             
     return tekmovalci  
                     

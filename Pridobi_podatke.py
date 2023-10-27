@@ -1,12 +1,13 @@
 import requests
 import re
 
-for i in range(1, 51):
-    stran = requests.get(
-        f'https://www.judoinside.com/judoka/{i}/judo-career'
-    )
-    with open('htmlji/big_stran.html', 'a', encoding='utf-8') as dat:
-        dat.write(stran.text)
+for el in range(53, 100):
+    for i in range(el*1000, (el+1)*1000):
+        stran = requests.get(
+            f'https://www.judoinside.com/judoka/{i}/judo-career'
+        )
+        with open(f'htmlji/skupek_strani{el+1}.html', 'a', encoding='utf-8') as dat:
+            dat.write(stran.text)
 
 
 #for i in range(1, 101):

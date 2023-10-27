@@ -1,10 +1,11 @@
 import izlusci
 import shrani
 
-st_strani = 15
+for i in range(1, 101):
+    
+    print(f'Smo na strani {i}')
+    podatki = izlusci.vsi_podatki(f'htmlji/skupek_strani{i}.html')
+    judoisti = izlusci.osebni_podatki(f'htmlji/skupek_strani{i}.html')
 
-podatki = izlusci.vsi_podatki('htmlji/big_stran.html')
-#judoisti = izlusci.osebni_podatki('htmlji/big_stran.html')
-
-shrani.shrani_tekmovalce('tekmovalci.csv', podatki)
-#shrani.shrani_judoista('judoisti.csv', judoisti)
+    shrani.shrani_tekmovalce('tekmovalci.csv', podatki)
+    shrani.shrani_judoista('judoisti.csv', judoisti)
