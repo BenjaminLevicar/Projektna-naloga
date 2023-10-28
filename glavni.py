@@ -1,6 +1,7 @@
 import izlusci
 import shrani
 
+# izluščimo in shranimo vse potrebne podatke
 for i in range(1, 101):
     
     print(f'Smo na strani {i}')

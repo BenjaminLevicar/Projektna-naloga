@@ -1,6 +1,6 @@
 import csv
 
-
+# shranimo podatke v tekmovalci.csv
 def shrani_tekmovalce(ime_dat, podatki_tekmovalcev):
     with open(ime_dat, "a", encoding='utf-8') as dat:
         pisatelj = csv.writer(dat)
@@ -24,6 +24,8 @@ def shrani_tekmovalce(ime_dat, podatki_tekmovalcev):
                     tekmovalec['kategorija'],
                 ]
             )
+            
+# shranimo podatke v judoisti.csv
 def shrani_judoista(ime_dat, podatki_judoistov):
     with open(ime_dat, "a", encoding='utf-8') as dat:
         pisatelj = csv.writer(dat)
